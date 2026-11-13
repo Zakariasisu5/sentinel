@@ -1,0 +1,74 @@
+.root {
+    -fx-background-color: #0B1120;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #F8FAFC;
+}
+
+.border-pane {
+    -fx-background-color: #0B1120;
+}
+
+.sidebar {
+    -fx-background-color: #101827;
+    -fx-border-color: #243047;
+    -fx-border-width: 0 1 0 0;
+}
+
+.brand-label {
+    -fx-text-fill: #00E5A0;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 4 0;
+}
+
+.sidebar-subtitle {
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 10px;
+    -fx-padding: 0 0 18 0;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #E2E8F0;
+    -fx-alignment: center-left;
+    -fx-padding: 10 12 10 12;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #15233a;
+}
+
+.nav-button.active {
+    -fx-background-color: rgba(0, 229, 160, 0.12);
+    -fx-text-fill: #00E5A0;
+    -fx-border-color: rgba(0, 229, 160, 0.4);
+    -fx-border-width: 1;
+}
+
+.content-pane {
+    -fx-background-color: #0B1120;
+    -fx-padding: 0;
+}
+
+.page-root {
+    -fx-background-color: #111827;
+}
+
+.page-title {
+    -fx-text-fill: #F8FAFC;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.page-subtitle {
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 14px;
+}
+
+.page-body {
+    -fx-text-fill: #E2E8F0;
+    -fx-font-size: 13px;
+}
