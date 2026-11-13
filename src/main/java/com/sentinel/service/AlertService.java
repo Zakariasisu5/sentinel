@@ -1,16 +1,19 @@
 package com.sentinel.service;
 
 import com.sentinel.model.SecurityAlert;
+import com.sentinel.repository.AlertRepository;
 
-import java.util.Collections;
 import java.util.List;
+import java.sql.SQLException;
 
 public class AlertService {
-    public List<SecurityAlert> getAlertHistory() {
-        return Collections.emptyList();
+    private final AlertRepository repository = new AlertRepository();
+
+    public List<SecurityAlert> getAlertHistory() throws SQLException {
+        return repository.findActiveAlerts();
     }
 
-    public void acknowledgeAlert(String alertId) {
-        // Alert acknowledgement logic will be implemented later.
+    public boolean acknowledgeAlert(String alertId) throws SQLException {
+        return repository.acknowledge(alertId);
     }
 }

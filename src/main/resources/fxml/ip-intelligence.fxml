@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sentinel.controller.IPIntelligenceController" styleClass="page-root">
-    <children>
-        <VBox spacing="16" AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0">
-            <Label text="IP Intelligence" styleClass="page-title"/>
-            <Label text="Reputation checks, source analysis, and investigation workflows will be added here." styleClass="page-subtitle"/>
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sentinel.controller.IPIntelligenceController" styleClass="page-scroll">
+    <content>
+        <VBox spacing="22" styleClass="page-root">
+            <HBox alignment="CENTER_LEFT" spacing="16" styleClass="page-header">
+                <VBox spacing="5">
+                    <Label text="IP intelligence" styleClass="page-title"/>
+                    <Label text="Search addresses observed in local event and threat records." styleClass="page-subtitle"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="LOCAL LOOKUP" styleClass="mini-badge"/>
+            </HBox>
+            <VBox spacing="14" styleClass="panel-card">
+                <HBox alignment="CENTER_LEFT" spacing="12" styleClass="filter-bar">
+                    <TextField fx:id="searchField" promptText="Enter an IP address or part of an address"
+                               onAction="#search" styleClass="search-field" HBox.hgrow="ALWAYS"/>
+                    <Button text="Search records" onAction="#search" styleClass="button-primary"/>
+                    <Button text="Clear" onAction="#clearSearch" styleClass="button-secondary"/>
+                </HBox>
+                <Label text="No external reputation or geolocation feed is configured. Results show local sightings and open threat records only."
+                       wrapText="true" styleClass="notice-text"/>
+                <HBox alignment="CENTER_LEFT">
+                    <Label fx:id="statusLabel" text="Enter an address to search local records." styleClass="status-label"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="NO EXTERNAL ENRICHMENT" styleClass="mini-badge"/>
+                </HBox>
+                <TableView fx:id="addressesTable" prefHeight="440">
+                    <placeholder><Label text="No matching local IP records." styleClass="table-empty"/></placeholder>
+                </TableView>
+            </VBox>
         </VBox>
-    </children>
-</AnchorPane>
+    </content>
+</ScrollPane>

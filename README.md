@@ -11,11 +11,15 @@ Sentinel is a JavaFX-based desktop application intended to provide a centralized
 
 ## Features
 
-- Dashboard summary cards and charts.
-- Threat-monitoring interface and navigation shell.
-- Alert, network, IP intelligence, incidents, analytics, and settings screens.
-- SQLite database initialization and repository structure.
-- Simulated local threat detection logic with clearly labeled safety boundaries.
+- Responsive SOC-style dashboard with local event, threat, alert, and connection summaries.
+- Searchable threat, alert, network, IP-observation, and incident views.
+- Confirmed alert acknowledgment and incident-resolution actions.
+- Event severity analytics and locally persisted alert-threshold preference.
+- Resizable window with saved windowed bounds and maximized state.
+- SQLite initialization and repository-backed data access.
+- Clear empty states; no generated sample telemetry or external-feed claims.
+
+This build does not capture live network traffic or connect to external reputation, geolocation, or threat-intelligence feeds.
 
 ## Technology Stack
 
@@ -81,6 +85,8 @@ mvn javafx:run
 ## Database
 
 The application uses SQLite and initializes the schema automatically on first launch. The schema is defined in `database/schema.sql`, and database access is isolated to the repository and database packages.
+
+The database is stored at `%USERPROFILE%\\.sentinel\\sentinel.db` on Windows and `~/.sentinel/sentinel.db` on macOS and Linux.
 
 ## Screenshots
 

@@ -1,15 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sentinel.controller.AnalyticsController" styleClass="page-root">
-    <children>
-        <VBox spacing="16" AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0">
-            <Label text="Analytics" styleClass="page-title"/>
-            <Label text="Trend assessment, event aggregation, and reporting views will be added during future phases." styleClass="page-subtitle"/>
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sentinel.controller.AnalyticsController" styleClass="page-scroll">
+    <content>
+        <VBox spacing="22" styleClass="page-root">
+            <HBox alignment="CENTER_LEFT" spacing="16" styleClass="page-header">
+                <VBox spacing="5">
+                    <Label text="Security analytics" styleClass="page-title"/>
+                    <Label text="Explore severity distribution from events stored in this instance." styleClass="page-subtitle"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="↻  Refresh" onAction="#refresh" styleClass="button-secondary"/>
+            </HBox>
+            <FlowPane hgap="14" vgap="14" styleClass="metric-grid">
+                <VBox spacing="10" minWidth="170" prefWidth="230" styleClass="metric-card">
+                    <Label text="EVENT RECORDS" styleClass="metric-label"/>
+                    <Label fx:id="totalEventsValue" text="—" styleClass="metric-value"/>
+                    <Label text="All locally stored events" styleClass="metric-detail"/>
+                </VBox>
+                <VBox spacing="10" minWidth="170" prefWidth="230" styleClass="metric-card, accent-cyan">
+                    <Label text="OPEN THREATS" styleClass="metric-label"/>
+                    <Label fx:id="activeThreatsValue" text="—" styleClass="metric-value"/>
+                    <Label text="Threats with open status" styleClass="metric-detail"/>
+                </VBox>
+                <VBox spacing="10" minWidth="170" prefWidth="230" styleClass="metric-card, accent-violet">
+                    <Label text="OPEN INCIDENTS" styleClass="metric-label"/>
+                    <Label fx:id="activeIncidentsValue" text="—" styleClass="metric-value"/>
+                    <Label text="Cases awaiting resolution" styleClass="metric-detail"/>
+                </VBox>
+            </FlowPane>
+            <VBox spacing="14" styleClass="panel-card">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <VBox spacing="4">
+                        <Label text="Event severity distribution" styleClass="section-title"/>
+                        <Label text="Counts are based on locally stored security event records." styleClass="section-subtitle"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="NO TREND DATA GENERATED" styleClass="mini-badge"/>
+                </HBox>
+                <StackPane minHeight="330" prefHeight="400">
+                    <BarChart fx:id="severityChart" animated="false" legendVisible="false"
+                              categoryGap="24" barGap="8" styleClass="severity-chart">
+                        <xAxis><CategoryAxis side="BOTTOM" animated="false"/></xAxis>
+                        <yAxis><NumberAxis side="LEFT" forceZeroInRange="true" animated="false"/></yAxis>
+                    </BarChart>
+                    <Label fx:id="emptyState" text="No event data is available for analysis."
+                           styleClass="empty-state"/>
+                </StackPane>
+                <Label fx:id="statusLabel" text="Analytics reflects local records only." styleClass="status-label"/>
+            </VBox>
         </VBox>
-    </children>
-</AnchorPane>
+    </content>
+</ScrollPane>

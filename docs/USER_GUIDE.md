@@ -1,35 +1,39 @@
 # User Guide
 
-Sentinel is organized as a modern security operations dashboard. The main left sidebar provides navigation between the core modules.
+Sentinel is a local-first security operations console. Use the left sidebar to switch between modules; the active page is highlighted. The window can be resized, minimized, maximized, restored, and closed using the normal desktop controls. Its last windowed size and position are saved when it closes.
 
 ## Dashboard
 
-The dashboard provides a summary of current monitoring state, including totals, alert trends, and activity summaries.
+The dashboard summarizes locally stored security events, open threats, active critical alerts, and network connection records. The severity chart and recent activity table use records in the local SQLite database. Empty states mean there are no matching records; Sentinel does not generate sample telemetry.
 
 ## Threat Monitor
 
-Use the threat monitor to review detected security patterns, suspicious sources, detection timestamps, and investigation status.
+Review open threat records, search by title, source address, or description, and filter by severity. Refresh reloads the latest local records.
 
-## Alerts
+## Security Alerts
 
-The alerts screen lists active and historical notifications and supports review and acknowledgment workflows.
+Search and filter active alerts. Select an alert and choose **Acknowledge selected** to update its status in the database. Sentinel asks for confirmation before applying the change.
 
 ## Network Monitor
 
-Use the network monitor to inspect active connections, traffic patterns, and source/destination details.
+Search locally stored connection observations by source, destination, protocol, or status. This build does not capture live network traffic.
 
 ## IP Intelligence
 
-Investigate suspicious IP addresses, evaluate reputation, and apply a safe local validation model during initial development.
+Search addresses found in local security-event and threat records. The page shows whether an open local threat record references the address. Geolocation and reputation are not enriched because no external intelligence feed is configured.
 
 ## Incident Management
 
-Create and track incidents, assign severity levels, and record notes and resolution updates.
+Search and filter open incident records. Select an incident and choose **Resolve selected** to update its status after confirmation.
 
 ## Analytics
 
-The analytics screen summarizes historical trends and provides a high-level view of event activity.
+View event counts grouped by severity, alongside totals for events, open threats, and open incidents. Analytics reflect local database records only; no trends or external data are synthesized.
 
 ## Settings
 
-Use settings to manage monitoring preferences, app behavior, and database configuration.
+Choose and save the local alert-threshold preference. This preference is stored for future integrations; it does not filter records in this build. The page also displays the application version and database path.
+
+## Data location and integrations
+
+The SQLite database is stored at `%USERPROFILE%\\.sentinel\\sentinel.db` on Windows (or `~/.sentinel/sentinel.db` on macOS and Linux). Live telemetry, external reputation services, geolocation feeds, and authentication are not configured in this build.

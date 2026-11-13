@@ -1,3 +1,74 @@
 .sidebar {
-    -fx-background-color: #101827;
+    -fx-background-color: #0e1725;
+    -fx-border-color: #202b3d;
+    -fx-border-width: 0 1 0 0;
+}
+
+.brand-row {
+    -fx-padding: 0 0 20 2;
+}
+
+.brand-mark {
+    -fx-alignment: center;
+    -fx-background-color: #133a48;
+    -fx-background-radius: 10;
+    -fx-min-width: 38px;
+    -fx-min-height: 38px;
+    -fx-text-fill: #66d8e8;
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+}
+
+.brand-label {
+    -fx-text-fill: #edf4fa;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.sidebar-subtitle {
+    -fx-text-fill: #76899f;
+    -fx-font-size: 9px;
+    -fx-font-weight: bold;
+}
+
+.sidebar .nav-section-label {
+    -fx-padding: 14 0 5 10;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-border-color: transparent;
+    -fx-border-radius: 8;
+    -fx-text-fill: #a7b6c8;
+    -fx-alignment: center-left;
+    -fx-font-size: 12px;
+    -fx-font-weight: normal;
+    -fx-padding: 11 12 11 12;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #162538;
+    -fx-text-fill: #e6f0fa;
+}
+
+.nav-button.active {
+    -fx-background-color: #163545;
+    -fx-border-color: #1d5b6b;
+    -fx-text-fill: #70d7e8;
+    -fx-font-weight: bold;
+}
+
+.sidebar-status {
+    -fx-background-color: #111d2b;
+    -fx-background-radius: 8;
+    -fx-border-color: #202e40;
+    -fx-border-radius: 8;
+    -fx-padding: 10;
+}
+
+.sidebar-status-text {
+    -fx-text-fill: #8799ad;
+    -fx-font-size: 11px;
 }

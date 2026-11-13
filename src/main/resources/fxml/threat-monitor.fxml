@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sentinel.controller.ThreatMonitorController" styleClass="page-root">
-    <children>
-        <VBox spacing="16" AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0">
-            <Label text="Threat Monitor" styleClass="page-title"/>
-            <Label text="Threat analysis and investigation workspace for the next implementation phase." styleClass="page-subtitle"/>
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sentinel.controller.ThreatMonitorController" styleClass="page-scroll">
+    <content>
+        <VBox spacing="22" styleClass="page-root">
+            <HBox alignment="CENTER_LEFT" spacing="16" styleClass="page-header">
+                <VBox spacing="5">
+                    <Label text="Threat monitor" styleClass="page-title"/>
+                    <Label text="Review open threat records and inspect their local context." styleClass="page-subtitle"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="LOCAL RECORDS" styleClass="mini-badge"/>
+            </HBox>
+            <VBox spacing="14" styleClass="panel-card">
+                <HBox alignment="CENTER_LEFT" spacing="12" styleClass="filter-bar">
+                    <TextField fx:id="searchField" promptText="Search title, source IP, or description"
+                               styleClass="search-field" HBox.hgrow="ALWAYS"/>
+                    <ComboBox fx:id="severityFilter" promptText="All severities" prefWidth="160"
+                              styleClass="filter-combo"/>
+                    <Button text="↻  Refresh" onAction="#refresh" styleClass="button-secondary"/>
+                </HBox>
+                <HBox alignment="CENTER_LEFT">
+                    <Label fx:id="statusLabel" text="Loading threat records…" styleClass="status-label"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="OPEN THREATS" styleClass="mini-badge"/>
+                </HBox>
+                <TableView fx:id="threatsTable" prefHeight="480">
+                    <placeholder><Label text="No open threat records were found." styleClass="table-empty"/></placeholder>
+                </TableView>
+            </VBox>
         </VBox>
-    </children>
-</AnchorPane>
+    </content>
+</ScrollPane>

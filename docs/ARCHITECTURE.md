@@ -16,7 +16,7 @@ Service classes coordinate application operations, such as loading dashboards, e
 
 ## Repository layer
 
-Repositories encapsulate SQLite access and are the only classes responsible for SQL queries and database interaction.
+Repositories encapsulate SQLite access and own SQL queries. The dashboard, network, IP lookup, settings, event, threat, alert, and incident views read from the existing schema. Alert acknowledgment and incident resolution update their local records.
 
 ## Model layer
 
@@ -29,6 +29,10 @@ Threat detection logic is isolated in dedicated rule classes and analyzers. This
 ## Configuration and database layers
 
 The project centralizes startup and configuration values in the `config` package and initialization logic in the `database` package.
+
+The JavaFX stage is resizable and restores saved windowed bounds and maximized state. Window preferences are stored through the JDK preferences API; application records remain in SQLite.
+
+The current UI is local-first. It does not collect live network traffic or connect to external threat intelligence, geolocation, or alerting feeds. Unavailable integrations are labeled rather than represented with synthetic data.
 
 ## Reasoning
 

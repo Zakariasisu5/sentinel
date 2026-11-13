@@ -1,4 +1,9 @@
 .theme-dark {
-    -fx-base: #0B1120;
-    -fx-accent: #00E5A0;
+    -fx-base: #0a101d;
+    -fx-accent: #38cce2;
+    -fx-focus-color: #38cce2;
+}
+
+.theme-dark .text {
+    -fx-fill: #e7eef8;
 }

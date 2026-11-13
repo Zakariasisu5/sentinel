@@ -1,15 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sentinel.controller.SettingsController" styleClass="page-root">
-    <children>
-        <VBox spacing="16" AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0">
-            <Label text="Settings" styleClass="page-title"/>
-            <Label text="Application preferences, alert policies, and database configuration will be configured here." styleClass="page-subtitle"/>
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sentinel.controller.SettingsController" styleClass="page-scroll">
+    <content>
+        <VBox spacing="22" styleClass="page-root">
+            <HBox alignment="CENTER_LEFT" spacing="16" styleClass="page-header">
+                <VBox spacing="5">
+                    <Label text="Settings" styleClass="page-title"/>
+                    <Label text="Review local application configuration and alert triage preferences." styleClass="page-subtitle"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="LOCAL CONFIGURATION" styleClass="mini-badge"/>
+            </HBox>
+
+            <VBox spacing="16" styleClass="panel-card">
+                <VBox spacing="4">
+                    <Label text="Alert policy" styleClass="section-title"/>
+                    <Label text="Store a severity preference for future downstream alerting; it does not filter records in this build."
+                           styleClass="section-subtitle" wrapText="true"/>
+                </VBox>
+                <HBox alignment="CENTER_LEFT" spacing="16" styleClass="settings-row">
+                    <VBox spacing="5">
+                        <Label text="Alert threshold" styleClass="settings-label"/>
+                        <Label text="This preference is saved locally. No external alert feed is configured." styleClass="settings-description"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <ComboBox fx:id="thresholdCombo" prefWidth="170" styleClass="filter-combo"/>
+                    <Button text="Save preference" onAction="#saveThreshold" styleClass="button-primary"/>
+                </HBox>
+                <Label fx:id="statusLabel" text="Loading preferences…" styleClass="status-label"/>
+            </VBox>
+
+            <VBox spacing="16" styleClass="panel-card">
+                <VBox spacing="4">
+                    <Label text="Application" styleClass="section-title"/>
+                    <Label text="This build runs as a local desktop console." styleClass="section-subtitle"/>
+                </VBox>
+                <HBox alignment="CENTER_LEFT" styleClass="settings-row">
+                    <Label text="Interface theme" styleClass="settings-label"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="Dark SOC" styleClass="settings-value"/>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" styleClass="settings-row">
+                    <Label text="Version" styleClass="settings-label"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="versionLabel" text="—" styleClass="settings-value"/>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" styleClass="settings-row">
+                    <Label text="Local database" styleClass="settings-label"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="databasePathLabel" text="—" wrapText="true" styleClass="settings-value"/>
+                </HBox>
+            </VBox>
+            <Label text="No external telemetry, geolocation, or reputation services are connected in this build."
+                   wrapText="true" styleClass="notice-text"/>
         </VBox>
-    </children>
-</AnchorPane>
+    </content>
+</ScrollPane>

@@ -1,12 +1,15 @@
 package com.sentinel.service;
 
 import com.sentinel.model.IPAddress;
+import com.sentinel.repository.IPAddressRepository;
 
-import java.util.Collections;
+import java.sql.SQLException;
 import java.util.List;
 
 public class IPIntelligenceService {
-    public List<IPAddress> investigate(String ipAddress) {
-        return Collections.emptyList();
+    private final IPAddressRepository repository = new IPAddressRepository();
+
+    public List<IPAddress> investigate(String ipAddress) throws SQLException {
+        return repository.findLocallyObservedAddresses(ipAddress);
     }
 }

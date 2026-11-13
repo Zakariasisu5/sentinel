@@ -1,16 +1,19 @@
 package com.sentinel.service;
 
 import com.sentinel.model.Incident;
+import com.sentinel.repository.IncidentRepository;
 
-import java.util.Collections;
 import java.util.List;
+import java.sql.SQLException;
 
 public class IncidentService {
-    public List<Incident> getIncidentHistory() {
-        return Collections.emptyList();
+    private final IncidentRepository repository = new IncidentRepository();
+
+    public List<Incident> getIncidentHistory() throws SQLException {
+        return repository.findOpenIncidents();
     }
 
-    public void resolveIncident(String incidentId) {
-        // Incident resolution logic will be added in a later phase.
+    public boolean resolveIncident(String incidentId) throws SQLException {
+        return repository.resolve(incidentId);
     }
 }
